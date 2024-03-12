@@ -1,0 +1,272 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"-->
+<!--      layout:decorate="~{/layouts/layoutChart}">-->
+
+<!--<th:block layout:fragment="script">-->
+
+<!--    <script>-->
+<!--        // jQuery ajax 를 이용하여 데이터 전송-->
+<!--        function permitBranch(branchId) {-->
+<!--            $.ajax({-->
+<!--                url: "branchPermit",-->
+<!--                type: "POST",-->
+<!--                data: {-->
+<!--                    "id": branchId-->
+<!--                },-->
+<!--                success: function (data) {-->
+<!--                    alert("승인 성공")-->
+<!--                },-->
+<!--                failure: function () {-->
+<!--                    alert("실패")-->
+<!--                }-->
+<!--            })-->
+<!--        }-->
+<!--    </script>-->
+
+<!--    <script th:src="@{/js/chartcall.js}"></script>-->
+
+<!--    <div sec:authorize="hasRole('ADMIN')">-->
+<!--        <script th:src="@{/js/monthChart.js}"></script>-->
+<!--    </div>-->
+<!--    <div sec:authorize="hasRole('USER')">-->
+<!--        <script th:src="@{/js/monthChartBranch.js}"></script>-->
+<!--    </div>-->
+
+<!--</th:block>-->
+
+
+<!--&lt;!&ndash; 월별 총 매출 &ndash;&gt;-->
+<!--<div layout:fragment="content">-->
+
+<!--    <div class="row">-->
+
+<!--        <div class="col-xl-4 col-lg-5">-->
+<!--            <div class="card shadow mb-4">-->
+<!--                <div class="card-header py-3">-->
+<!--                    <h6 class="m-0 font-weight-bold text-primary">월별 매출 합계(지점 총합)</h6>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div style="width:600px; height: 370px;">-->
+<!--                        <canvas src="" id="monthChart" style="width:80%; height:100%;"></canvas>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; 가장 많이 팔린 메뉴 &ndash;&gt;-->
+<!--        <div class="col-xl-4 col-lg-5">-->
+<!--            <div class="card shadow mb-4">-->
+<!--                <div class="card-header py-3">-->
+<!--                    <h6 class="m-0 font-weight-bold text-primary">월별 주문량 산점도 분석</h6>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div>-->
+<!--                        <img src="" id="scatterMonth">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-xl-4 col-lg-5">-->
+<!--            <div class="card shadow mb-4">-->
+<!--                <div class="card-header py-3">-->
+<!--                    <h6 class="m-0 font-weight-bold text-primary">월별 주문량 BoxPlot 분석</h6>-->
+<!--                </div>-->
+<!--                <div class="card-body">-->
+<!--                    <div>-->
+<!--                        <img src="" id="boxPlotMonth">-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--    </div>-->
+
+
+<!--</div>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>월별 매출 차트</title>-->
+<!--    &lt;!&ndash; 필요한 스타일시트 및 스크립트를 로드합니다. &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>-->
+<!--</head>-->
+
+<!--<body>-->
+<!--&lt;!&ndash; 차트를 그릴 캔버스 요소 &ndash;&gt;-->
+<!--<canvas id="monthChart"></canvas>-->
+
+<!--&lt;!&ndash; 스크립트로 차트를 생성합니다. &ndash;&gt;-->
+<!--<script th:inline="javascript">-->
+<!--    /*<![CDATA[*/-->
+<!--    var ctx = document.getElementById('monthChart').getContext('2d');-->
+<!--    var monthChart = new Chart(ctx, {-->
+<!--        type: 'bar',-->
+<!--        data: {-->
+<!--            labels: ['일별 매출', '지난 주 매출', '이번 주 매출', '지난 달 매출', '이번 달 매출'],-->
+<!--            datasets: [{-->
+<!--                label: '매출',-->
+<!--                data: [-->
+<!--                    /*[[${dailySalesAll}]]*/,-->
+<!--                    /*[[${lastWeekSalesAll}]]*/,-->
+<!--                    /*[[${weekSalesAll}]]*/,-->
+<!--                    /*[[${lastMonthSalesAll}]]*/,-->
+<!--                    /*[[${monthSalesAll}]]*/-->
+<!--                ],-->
+<!--                backgroundColor: [-->
+<!--                    'rgba(255, 99, 132, 0.2)',-->
+<!--                    'rgba(54, 162, 235, 0.2)',-->
+<!--                    'rgba(255, 206, 86, 0.2)',-->
+<!--                    'rgba(75, 192, 192, 0.2)',-->
+<!--                    'rgba(153, 102, 255, 0.2)'-->
+<!--                ],-->
+<!--                borderColor: [-->
+<!--                    'rgba(255, 99, 132, 1)',-->
+<!--                    'rgba(54, 162, 235, 1)',-->
+<!--                    'rgba(255, 206, 86, 1)',-->
+<!--                    'rgba(75, 192, 192, 1)',-->
+<!--                    'rgba(153, 102, 255, 1)'-->
+<!--                ],-->
+<!--                borderWidth: 1-->
+<!--            }]-->
+<!--        },-->
+<!--        options: {-->
+<!--            scales: {-->
+<!--                yAxes: [{-->
+<!--                    ticks: {-->
+<!--                        beginAtZero: true-->
+<!--                    }-->
+<!--                }]-->
+<!--            }-->
+<!--        }-->
+<!--    });-->
+<!--    /*]]>*/-->
+<!--</script>-->
+<!--</body>-->
+
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>매출 차트</title>
+    <!-- 필요한 스타일시트 및 스크립트를 로드합니다. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+</head>
+
+<body>
+<!-- role에 따라 다르게 차트를 표시합니다. -->
+<div sec:authorize="hasRole('ADMIN')">
+    <canvas id="monthChart"></canvas>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var ctx = document.getElementById('monthChart').getContext('2d');
+        var monthChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['일별 매출', '지난 주 매출', '이번 주 매출', '지난 달 매출', '이번 달 매출'],
+                datasets: [{
+                    label: '매출',
+                    data: [
+                        /*[[${dailySalesAll}]]*/,
+                        /*[[${lastWeekSalesAll}]]*/,
+                        /*[[${weekSalesAll}]]*/,
+                        /*[[${lastMonthSalesAll}]]*/,
+                        /*[[${monthSalesAll}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        /*]]>*/
+    </script>
+</div>
+
+<div sec:authorize="hasRole('USER')">
+    <canvas id="monthChartBranch"></canvas>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var ctxBranch = document.getElementById('monthChartBranch').getContext('2d');
+        var monthChartBranch = new Chart(ctxBranch, {
+            type: 'bar',
+            data: {
+                labels: ['일별 매출', '지난 주 매출', '이번 주 매출', '지난 달 매출', '이번 달 매출'],
+                datasets: [{
+                    label: '매출',
+                    data: [
+                        /*[[${dailySales}]]*/,
+                        /*[[${lastWeekSales}]]*/,
+                        /*[[${weekSales}]]*/,
+                        /*[[${lastMonthSales}]]*/,
+                        /*[[${monthSales}]]*/
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        /*]]>*/
+    </script>
+</div>
+</body>
+
+</html>
+
+
+
+
